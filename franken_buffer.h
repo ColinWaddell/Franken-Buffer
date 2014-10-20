@@ -1,7 +1,9 @@
-#ifndef FKN_OUTTER_BUFF_SIZE
+// Any size
+#ifndef FKN_OUTER_BUFF_SIZE
   #define FKN_OUTTER_BUFF_SIZE 5
 #endif
 
+// Must be of the value 2^n (ie. 2, 4, 8, 16 etc)
 #ifndef FKN_INNER_BUFF_SIZE
   #define FKN_INNER_BUFF_SIZE 16
 #endif
