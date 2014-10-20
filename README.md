@@ -8,7 +8,7 @@ block to buffer data coming in from a high-speed serial link. Due to time constr
 increments the ring buffer and the link list simultaneously.**
 
 Speed savings are made with the ring buffer by masking in the index to ensure it only counts from 1 to any
-2<sup>n</sup> value. The link list allows your buffer to be the size of **n** times any arbitrary value. A double ring-buffer
+2<sup>n</sup> value. The link list allows your buffer to be the size of **n** times an arbitrary value. A double ring-buffer
 could have been used but this had too many limitations in the total size the buffer could occupy.
 
 #Usage
