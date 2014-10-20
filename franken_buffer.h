@@ -22,7 +22,6 @@ struct FKNBUFFER {
 
 
 struct FKNBUFFER *buffer_setup(struct FKNBUFFER *storage);
-#INLINE
 char buffer_get(struct FKNBUFFER *storage, unsigned int index);
 void buffer_add(struct FKNBUFFER **buffer, unsigned char value);
 void buffer_clear(struct FKNBUFFER *storage);
