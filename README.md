@@ -11,3 +11,38 @@ Speed savings are made with the ring buffer by masking in the index to ensure it
 2^n value. The link list allows your buffer to be the size of n times any arbitrary value. A double ring-buffer
 could have been used but this had too many limitations in the total size the buffer could occupy.
 
+#Usage
+This is still currently a little dirty.
+
+There are two main declarations which first need setup: `OUTTER_BUFF_SIZE`, which can be any value and `INNER_BUFF_SIZE` which must be of 2^n (ie. 8, 16, 32).
+
+Next, you need to declare your outer buffer. This is a pseudo-link-list. I say pseudo as you can't add/remove nodes, but still uses the concept of holding a pointer to the next entry in it's own structure. The reason for this will become apparent if you look at the implementation of the `buffer_add` function.
+
+To use the buffer you also need to declare a pointer of type `FKNBUFFER`. This is your route in and out of the buffer and is returned by `buffer_setup`
+
+Adding data is performed through `buffer_add` which places a value in the next buffer space. Retrieving data is performed using `get_data` which takes as a parameter an arbitrary location in the buffer. The add routine is designed to be blindingly fast, the get routine is not.
+
+#Example
+
+```
+  int i; 
+  struct FKNBUFFER *outer;
+  struct FKNBUFFER buffer_raw[5];
+
+  outer = buffer_setup(buffer_raw);
+  buffer_clear(outer);
+
+  for (i=0; i<80; i++){
+    buffer_add(&outer, i); // Add 0 to 79
+  }
+
+  for (i=0; i<80; i++){
+    printf("i=%d \t %d\n", i, buffer_get(outer, i)); // Read out 0 to 79
+  }
+```
+
+In this example it would be possible to use malloc instead of declaring `buffer_raw` as shown, however for readability this has been ommited.
+
+#Requirements
+
+The setup function currently requires malloc in order to give itself the space it requires to operate.
