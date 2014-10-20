@@ -8,13 +8,13 @@ this code does not use a single branching statement (if/switch) when adding data
 increments the ring buffer and the link list simultaneously.
 
 Speed savings are made with the ring buffer by masking in the index to ensure it only counts from 1 to any
-2^n value. The link list allows your buffer to be the size of n times any arbitrary value. A double ring-buffer
+2<sup>n</sup> value. The link list allows your buffer to be the size of n times any arbitrary value. A double ring-buffer
 could have been used but this had too many limitations in the total size the buffer could occupy.
 
 #Usage
 This is still currently a little dirty.
 
-There are two main declarations which first need setup: `OUTTER_BUFF_SIZE`, which can be any value and `INNER_BUFF_SIZE` which must be of 2^n (ie. 8, 16, 32).
+There are two main declarations which first need setup: `OUTTER_BUFF_SIZE`, which can be any value and `INNER_BUFF_SIZE` which must be of 2<sup>n</sup> (ie. 8, 16, 32).
 
 Next, you need to declare your outer buffer. This is a pseudo-link-list. I say pseudo as you can't add/remove nodes, but still uses the concept of holding a pointer to the next entry in it's own structure. The reason for this will become apparent if you look at the implementation of the `buffer_add` function.
 
