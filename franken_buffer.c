@@ -1,4 +1,4 @@
-struct FKNBUFFER *buffer_setup(struct FKNBUFFER *storage){
+struct FKNBUFFER *fkn_buffer_setup(struct FKNBUFFER *storage){
   int i;
 
   for (i=0; i<OUTTER_BUFF_SIZE; i++)
@@ -14,19 +14,19 @@ struct FKNBUFFER *buffer_setup(struct FKNBUFFER *storage){
 }
 
 // LOOK - No ifs or buts!
-void buffer_add(struct FKNBUFFER **buffer, unsigned char value){
+void fkn_buffer_add(struct FKNBUFFER **buffer, unsigned char value){
   (*buffer)->buffer->data[((*buffer)->buffer->index++)&INNER_BUFF_SIZE_MASK] = value;
   (*buffer) = (*buffer)->next;
 }
 
 // Very unoptimised.
-char buffer_get(struct FKNBUFFER *buffer, unsigned int index){
+char fkn_buffer_get(struct FKNBUFFER *buffer, unsigned int index){
   struct CSBUFFER *buf = &(buffer->head[index % OUTTER_BUFF_SIZE]);
   struct RINGBUFFER *rb = buf->buffer;
   return rb->data[index / OUTTER_BUFF_SIZE];
 }
 
-void buffer_clear(struct FKNBUFFER *buffer){
+void fkn_buffer_clear(struct FKNBUFFER *buffer){
   unsigned int i, j;
 
   for (i=0; i<OUTTER_BUFF_SIZE; i++)
