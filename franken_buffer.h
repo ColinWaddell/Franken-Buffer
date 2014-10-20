@@ -9,13 +9,13 @@
 #define INNER_BUFF_SIZE_MASK (INNER_BUFF_SIZE-1)
 #define BUFF_SIZE (OUTTER_BUFF_SIZE*INNER_BUFF_SIZE)
 
-struct RINGBUFFER{
+struct FKN_RINGBUFFER{
   char data[INNER_BUFF_SIZE];
   unsigned int index;
 };
 
 struct FKNBUFFER {
-  struct RINGBUFFER *buffer;
+  struct FKN_RINGBUFFER *buffer;
   struct FKNBUFFER *next;
   struct FKNBUFFER *head;
 };
