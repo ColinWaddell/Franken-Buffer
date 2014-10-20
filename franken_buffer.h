@@ -14,16 +14,16 @@ struct RINGBUFFER{
   unsigned int index;
 };
 
-struct CSBUFFER {
+struct FKNBUFFER {
   struct RINGBUFFER *buffer;
-  struct CSBUFFER *next;
-  struct CSBUFFER *head;
+  struct FKNBUFFER *next;
+  struct FKNBUFFER *head;
 };
 
 
-struct CSBUFFER *buffer_setup(struct CSBUFFER *storage);
+struct FKNBUFFER *buffer_setup(struct FKNBUFFER *storage);
 #INLINE
-char buffer_get(struct CSBUFFER *storage, unsigned int index);
-void buffer_add(struct CSBUFFER **buffer, unsigned char value);
-void buffer_clear(struct CSBUFFER *storage);
+char buffer_get(struct FKNBUFFER *storage, unsigned int index);
+void buffer_add(struct FKNBUFFER **buffer, unsigned char value);
+void buffer_clear(struct FKNBUFFER *storage);
 
