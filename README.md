@@ -14,7 +14,7 @@ could have been used but this had too many limitations in the total size the buf
 #Usage
 This is still currently a little dirty.
 
-There are two main declarations which first need setup: `FKN_OUTTER_BUFF_SIZE`, which can be any value and `FKN_INNER_BUFF_SIZE` which must be of 2<sup>n</sup> (ie. 8, 16, 32).
+There are two main declarations which first need setup: `FKN_OUTER_BUFF_SIZE`, which can be any value and `FKN_INNER_BUFF_SIZE` which must be of 2<sup>n</sup> (ie. 8, 16, 32).
 
 Next, you need to declare your outer buffer. This is a pseudo-link-list. I say pseudo as you can't add/remove nodes, but still uses the concept of holding a pointer to the next entry in it's own structure. The reason for this will become apparent if you look at the implementation of the `fkn_buffer_add` function.
 
@@ -27,7 +27,7 @@ Adding data is performed through `fkn_buffer_add` which places a value in the ne
 ```
   int i; 
   struct FKNBUFFER *outer;
-  struct FKNBUFFER buffer_raw[FKN_OUTTER_BUFF_SIZE];
+  struct FKNBUFFER buffer_raw[FKN_OUTER_BUFF_SIZE];
 
   outer = fkn_buffer_setup(buffer_raw);
   fkn_buffer_clear(outer);
