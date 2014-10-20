@@ -1,4 +1,4 @@
-truct CSBUFFER *buffer_setup(struct CSBUFFER *storage){
+struct CSBUFFER *buffer_setup(struct CSBUFFER *storage){
   int i;
 
   for (i=0; i<OUTTER_BUFF_SIZE; i++)
