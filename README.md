@@ -29,15 +29,15 @@ Adding data is performed through `buffer_add` which places a value in the next b
   struct FKNBUFFER *outer;
   struct FKNBUFFER buffer_raw[5];
 
-  outer = buffer_setup(buffer_raw);
-  buffer_clear(outer);
+  outer = fkn_buffer_setup(buffer_raw);
+  fkn_buffer_clear(outer);
 
   for (i=0; i<80; i++){
-    buffer_add(&outer, i); // Add 0 to 79
+    fkn_buffer_add(&outer, i); // Add 0 to 79
   }
 
   for (i=0; i<80; i++){
-    printf("i=%d \t %d\n", i, buffer_get(outer, i)); // Read out 0 to 79
+    printf("i=%d \t %d\n", i, fkn_buffer_get(outer, i)); // Read out 0 to 79
   }
 ```
 
