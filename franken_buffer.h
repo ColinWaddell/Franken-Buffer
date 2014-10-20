@@ -21,8 +21,8 @@ struct FKNBUFFER {
 };
 
 
-struct FKNBUFFER *buffer_setup(struct FKNBUFFER *storage);
-char buffer_get(struct FKNBUFFER *storage, unsigned int index);
-void buffer_add(struct FKNBUFFER **buffer, unsigned char value);
-void buffer_clear(struct FKNBUFFER *storage);
+struct FKNBUFFER *fkn_buffer_setup(struct FKNBUFFER *storage);
+char fkn_buffer_get(struct FKNBUFFER *storage, unsigned int index);
+void fkn_buffer_add(struct FKNBUFFER **buffer, unsigned char value);
+void fkn_buffer_clear(struct FKNBUFFER *storage);
 
