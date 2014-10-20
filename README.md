@@ -14,29 +14,29 @@ could have been used but this had too many limitations in the total size the buf
 #Usage
 This is still currently a little dirty.
 
-There are two main declarations which first need setup: `OUTTER_BUFF_SIZE`, which can be any value and `INNER_BUFF_SIZE` which must be of 2<sup>n</sup> (ie. 8, 16, 32).
+There are two main declarations which first need setup: `FKN_OUTTER_BUFF_SIZE`, which can be any value and `FKN_INNER_BUFF_SIZE` which must be of 2<sup>n</sup> (ie. 8, 16, 32).
 
-Next, you need to declare your outer buffer. This is a pseudo-link-list. I say pseudo as you can't add/remove nodes, but still uses the concept of holding a pointer to the next entry in it's own structure. The reason for this will become apparent if you look at the implementation of the `buffer_add` function.
+Next, you need to declare your outer buffer. This is a pseudo-link-list. I say pseudo as you can't add/remove nodes, but still uses the concept of holding a pointer to the next entry in it's own structure. The reason for this will become apparent if you look at the implementation of the `fkn_buffer_add` function.
 
-To use the buffer you also need to declare a pointer of type `FKNBUFFER`. This is your route in and out of the buffer and is returned by `buffer_setup`
+To use the buffer you also need to declare a pointer of type `FKNBUFFER`. This is your route in and out of the buffer and is returned by `fkn_buffer_setup`
 
-Adding data is performed through `buffer_add` which places a value in the next buffer space. Retrieving data is performed using `get_data` which takes as a parameter an arbitrary location in the buffer. The add routine is designed to be blindingly fast, the get routine is not.
+Adding data is performed through `fkn_buffer_add` which places a value in the next buffer space. Retrieving data is performed using `fkn_get_data` which takes as a parameter an arbitrary location in the buffer. The add routine is designed to be blindingly fast, the get routine is not.
 
 #Example
 
 ```
   int i; 
   struct FKNBUFFER *outer;
-  struct FKNBUFFER buffer_raw[5];
+  struct FKNBUFFER buffer_raw[FKN_OUTTER_BUFF_SIZE];
 
   outer = fkn_buffer_setup(buffer_raw);
   fkn_buffer_clear(outer);
 
-  for (i=0; i<80; i++){
+  for (i=0; i<FKN_BUFF_SIZE; i++){
     fkn_buffer_add(&outer, i); // Add 0 to 79
   }
 
-  for (i=0; i<80; i++){
+  for (i=0; i<FKN_BUFF_SIZE; i++){
     printf("i=%d \t %d\n", i, fkn_buffer_get(outer, i)); // Read out 0 to 79
   }
 ```
