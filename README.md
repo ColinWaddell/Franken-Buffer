@@ -20,7 +20,7 @@ Next, you need to declare your outer buffer. This is a pseudo-link-list. I say p
 
 To use the buffer you also need to declare a pointer of type `FKNBUFFER`. This is your route in and out of the buffer and is returned by `fkn_buffer_setup`
 
-Adding data is performed through `fkn_buffer_add` which places a value in the next buffer space. Retrieving data is performed using `fkn_get_data` which takes as a parameter an arbitrary location in the buffer. The add routine is designed to be blindingly fast, the get routine is not.
+Adding data is performed through `fkn_buffer_add` which places a value in the next buffer space. Retrieving data is performed using `fkn_get_data` which takes as a parameter an arbitrary location in the buffer. The add routine is designed to be blindingly fast, the get routine is not. Lastly, there is a function `fkn_buffer_clean` which sets all the values in the buffer to zero.
 
 #Example
 
